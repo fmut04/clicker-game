@@ -1,0 +1,5 @@
+1. Enter command prompt in administrator mode and type "net start MYSQL80".
+
+2. enter command prompt again and cd into the card clicker and type "npm start".
+
+3. in a different command prompt cd into card clicker and then backend and then type "npm start".

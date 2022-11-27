@@ -5,8 +5,6 @@ import Login from "./Login";
 class App extends React.Component {
   constructor(props) {
     super(props);
-
-    console.log(document.getElementsByClassName("bill")[0]);
     this.state = {
       luck: 1,
       clicked: false,
@@ -198,11 +196,10 @@ class App extends React.Component {
       totalMoney: information.totalMoney,
       clickSpeed: information.clickSpeed,
       luck: information.luck,
-      moneyCount: information.moneyCount,
+      moneyCount: information.moneyCount + 1,
     });
 
     var bills = document.getElementsByClassName("bill");
-    console.log(bills);
     while (bills.length > this.state.moneyCount) {
       bills[bills.length - 1].remove();
     }

@@ -34,9 +34,8 @@ app.post("/login", (req, res) => {
     (err, result) => {
       if (err) res.send({ err: err });
 
-      if (result.length > 0) res.send(result.data[0].password);
+      if (result.length > 0) res.send(result);
       else res.send({ message: "Wrong username and password" });
-      console.log(result.password);
     }
   );
 });
@@ -44,17 +43,12 @@ app.post("/login", (req, res) => {
 app.post("/save", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
+  const gameInfo = JSON.stringify(req.body.gameInfo);
 
+  //console.log(username, password);
   db.query(
-    "SELECT * FROM usersinfo WHERE username = ? AND password = ?",
-    [username, password],
-    (err, result) => {
-      if (err) res.send({ err: err });
-
-      if (result.length > 0) res.send(result);
-      else res.send({ message: "Wrong username and password" });
-      console.log(result);
-    }
+    "UPDATE usersinfo SET gameInfo = ? WHERE username = ? AND password = ?",
+    [gameInfo, username, password]
   );
 });
 

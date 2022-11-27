@@ -24,13 +24,21 @@ function Login({ getGameInfo, setGameInfo }) {
     }).then((response) => setGameInfo(JSON.parse(response.data[0].gameinfo)));
   };
 
-  window.addEventListener("beforeunload", function (e) {
+  window.onbeforeunload = () => {
+    return saveInfo();
+  };
+
+  function saveInfo() {
     Axios.post("http://localhost:3001/save", {
       username: usernameLogin,
       password: passwordLogin,
       gameInfo: getGameInfo,
     }).then((response) => console.log(response));
-  });
+
+    return new Promise(function (resolve, reject) {
+      resolve("Hello World!");
+    });
+  }
 
   return (
     <div className="gridDiv" id="leftDiv">
